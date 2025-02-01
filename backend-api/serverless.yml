@@ -1,0 +1,35 @@
+service: nestjs-api
+
+frameworkVersion: '4'
+
+provider:
+  name: aws
+  runtime: nodejs16.x
+  region: us-east-1
+  memorySize: 1024
+  timeout: 10
+
+functions:
+  api:
+    handler: dist/src/main.js
+    events:
+      - http:
+          path: api/
+          method: any
+
+plugins:
+  - serverless-offline
+
+custom:
+  serverless-offline:
+    port: 3001  # You can change this to another port if needed
+  dashboard: false
+
+package:
+  exclude:
+    - node_modules/**
+    - test/**
+    - src/**
+    - .gitignore
+    - .env
+    - serverless.yml
