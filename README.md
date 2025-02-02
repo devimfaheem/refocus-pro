@@ -9,12 +9,13 @@
 # Command
 
 - Local setup
-`cd backend-api`
+`cd backend`
+`create .env copy from sample.env`
 `npm install`
 `npm run migration`
 `npm run start`
 
-- Access url on local `http://localhost:3001`
+- Access url on local `http://localhost:3000`
 
 # API List
 - `/admin/login` POST ({username, password})
@@ -27,7 +28,7 @@
 
 # API Doc
 
-- `http://localhost:3001/api-docs`
+- `http://localhost:3000/api-docs`
 
 # Refocus Frontend
 
@@ -40,10 +41,10 @@
 # Command
 
 - Local setup
-`cd frontend-app`
+`cd frontend`
 `npm install && npm run dev`
 
-- Access url on local `http://localhost:3000`
+- Access url on local `http://localhost:4000`
 
 # Site Flow
 

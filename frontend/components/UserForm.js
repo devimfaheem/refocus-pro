@@ -1,7 +1,7 @@
 // components/UserForm.js
 import { useState, useEffect } from "react";
 
-const UserForm = ({ user, onSubmit }) => {
+const UserForm = ({ user, onSubmit, errorMessage }) => {
   const [formData, setFormData] = useState({
     first_name: "",
     last_name: "",
@@ -36,6 +36,11 @@ const UserForm = ({ user, onSubmit }) => {
 
   return (
     <div className="mt-4">
+      {errorMessage && (
+          <div className="bg-red-500 text-white p-2 rounded mb-4">
+            {errorMessage}
+          </div>
+      )}
       <h2 className="text-xl font-bold">
         {user ? "Edit User" : "Add New User"}
       </h2>

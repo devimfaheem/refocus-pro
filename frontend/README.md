@@ -11,7 +11,7 @@
 - Local setup
 `npm install && npm run dev`
 
-- Access url on local `http://localhost:3000`
+- Access url on local `http://localhost:4000`
 
 # Site Flow
 

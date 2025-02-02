@@ -12,6 +12,7 @@ const Dashboard = () => {
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [userToDelete, setUserToDelete] = useState(null);
   const [userToEdit, setUserToEdit] = useState(null);
+  const [errorMessage, setErrorMessage] = useState(null);
 
   useEffect(() => {
     fetchUsers(statusFilter, numberFilter).then((res) => setUsers(res.data));
@@ -24,11 +25,18 @@ const Dashboard = () => {
   };
 
   const handleAddOrEditUser = async (user) => {
+    setErrorMessage("");
     if (userToEdit) {
       const updatedUser = await updateUser(user);
+      if (updatedUser.statusCode > 400 && updatedUser?.message) {
+        setErrorMessage(updatedUser?.message);
+      }
       setUsers(users.map((u) => (u.id === updatedUser.id ? updatedUser : u)));
     } else {
       const newUser = await addUser(user);
+      if (newUser.statusCode > 400 && newUser?.message) {
+        setErrorMessage(newUser?.message);
+      }
       setUsers([...users, newUser]);
     }
     setUserToEdit(null);
@@ -98,7 +106,7 @@ const Dashboard = () => {
         </Modal>
       )}
 
-      <UserForm user={userToEdit} onSubmit={handleAddOrEditUser} />
+      <UserForm user={userToEdit} onSubmit={handleAddOrEditUser} errorMessage={errorMessage} />
     </div>
   );
 };
