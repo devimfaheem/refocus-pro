@@ -1,0 +1,103 @@
+{
+  "C:\\Users\\Faheem\\Desktop\\refocusAi-pro\\backend\\serverless.yml": {
+    "versionFramework": "4.5.3",
+    "servicePath": "C:\\Users\\Faheem\\Desktop\\refocusAi-pro\\backend\\serverless.yml",
+    "serviceConfigFileName": "serverless.yml",
+    "service": {
+      "service": "nestjs-api",
+      "frameworkVersion": "4",
+      "provider": {
+        "name": "aws",
+        "runtime": "nodejs18.x",
+        "region": "eu-north-1",
+        "timeout": 30,
+        "memorySize": 128,
+        "stage": "dev",
+        "versionFunctions": true
+      },
+      "functions": {
+        "api": {
+          "handler": "dist/src/main.handler",
+          "events": [
+            {
+              "http": {
+                "path": "/",
+                "method": "any"
+              }
+            },
+            {
+              "http": {
+                "path": "{proxy+}",
+                "method": "any"
+              }
+            }
+          ],
+          "name": "nestjs-api-dev-api"
+        }
+      },
+      "plugins": [
+        "serverless-offline",
+        "serverless-plugin-warmup"
+      ],
+      "package": {
+        "exclude": [
+          "test/**",
+          ".gitignore"
+        ],
+        "artifactsS3KeyDirname": "serverless/nestjs-api/dev/code-artifacts"
+      }
+    },
+    "provider": {
+      "name": "aws",
+      "runtime": "nodejs18.x",
+      "region": "eu-north-1",
+      "timeout": 30,
+      "memorySize": 128,
+      "stage": "dev",
+      "versionFunctions": true
+    },
+    "dashboard": {
+      "isEnabledForService": false,
+      "requiredAuthentication": false,
+      "orgFeaturesInUse": null,
+      "orgObservabilityIntegrations": null,
+      "serviceAppId": null,
+      "serviceProvider": null,
+      "instanceParameters": null
+    },
+    "serviceRawFile": "service: nestjs-api\n\nframeworkVersion: '4'\n\nprovider:\n  name: aws\n  runtime: nodejs18.x\n  region: eu-north-1\n  timeout: 30\n  memorySize: 128\n\nfunctions:\n  api:\n    handler: dist/src/main.handler\n    events:\n      - http:\n          path: /\n          method: any\n      - http:\n          path: '{proxy+}'\n          method: any\n\nplugins:\n  - serverless-offline\n  - serverless-plugin-warmup\n\npackage:\n  exclude:\n    - test/**\n    - .gitignore\n",
+    "command": [
+      "remove"
+    ],
+    "options": {},
+    "orgId": "76b8a309-e2d4-4d18-b53e-8f37897a402a",
+    "orgName": "refocus",
+    "userId": "yV1jMQkgHF5xzTkgCD",
+    "userName": "refocus",
+    "serviceProviderAwsAccountId": "692859937321",
+    "serviceProviderAwsCfStackName": "nestjs-api-dev",
+    "serviceProviderAwsCfStackId": "arn:aws:cloudformation:eu-north-1:692859937321:stack/nestjs-api-dev/e72e49b0-e16d-11ef-8ea9-0eee516cdba3",
+    "serviceProviderAwsCfStackCreated": "2025-02-02T13:59:22.243Z",
+    "serviceProviderAwsCfStackUpdated": null,
+    "serviceProviderAwsCfStackStatus": "CREATE_COMPLETE",
+    "serviceProviderAwsCfStackOutputs": [
+      {
+        "OutputKey": "ApiLambdaFunctionQualifiedArn",
+        "OutputValue": "arn:aws:lambda:eu-north-1:692859937321:function:nestjs-api-dev-api:2",
+        "Description": "Current Lambda function version",
+        "ExportName": "sls-nestjs-api-dev-ApiLambdaFunctionQualifiedArn"
+      },
+      {
+        "OutputKey": "ServiceEndpoint",
+        "OutputValue": "https://grwbz7u8t0.execute-api.eu-north-1.amazonaws.com/dev",
+        "Description": "URL of the service endpoint",
+        "ExportName": "sls-nestjs-api-dev-ServiceEndpoint"
+      },
+      {
+        "OutputKey": "ServerlessDeploymentBucketName",
+        "OutputValue": "serverless-framework-deployments-eu-north-1-28f1abb4-5e25",
+        "ExportName": "sls-nestjs-api-dev-ServerlessDeploymentBucketName"
+      }
+    ]
+  }
+}

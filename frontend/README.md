@@ -9,7 +9,7 @@
 # Command
 
 - Local setup
-`npm install && npm run dev`
+- `npm install && npm run dev`
 
 - Access url on local `http://localhost:4000`
 

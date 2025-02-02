@@ -4,32 +4,27 @@ frameworkVersion: '4'
 
 provider:
   name: aws
-  runtime: nodejs16.x
-  region: us-east-1
-  memorySize: 1024
-  timeout: 10
+  runtime: nodejs18.x
+  region: eu-north-1
+  timeout: 30
+  memorySize: 128
 
 functions:
   api:
-    handler: dist/src/main.js
+    handler: dist/src/main.handler
     events:
       - http:
-          path: api/
+          path: /
+          method: any
+      - http:
+          path: '{proxy+}'
           method: any
 
 plugins:
   - serverless-offline
-
-custom:
-  serverless-offline:
-    port: 3001  # You can change this to another port if needed
-  dashboard: false
+  - serverless-plugin-warmup
 
 package:
   exclude:
-    - node_modules/**
     - test/**
-    - src/**
     - .gitignore
-    - .env
-    - serverless.yml
