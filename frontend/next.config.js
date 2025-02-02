@@ -1,9 +1,12 @@
 module.exports = {
   output: "export",
-  images: {
-    unoptimized: true, // Required if using Next.js images in static export
+  exportPathMap: async () => {
+    const pathMap = {
+      '/': { page: '/' },
+      '/login': { page: '/login' },
+      '/dashboard': { page: '/dashboard' },
+    };
+    return pathMap;
   },
-  env: {
-    NEXT_PUBLIC_API_URL: "http://localhost:3000/dev",
-  },
+  trailingSlash: true, // Add this line to ensure paths have trailing slashes
 };
